@@ -29,7 +29,7 @@ const Admin = () => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.deletedCount > 0) {
-                        const filteredProduct = product.filter(item => item._id !==id);
+                        const filteredProduct = product.filter(item => item._id !== id);
                         setProduct(filteredProduct);
                     }
                 })
@@ -40,8 +40,10 @@ const Admin = () => {
 
     return (
         <div >
-            <h1>Total item Found :{product.length}</h1>
-            <Link to='/add-products'>Add a new product</Link>
+            <div className="title-div">
+                <h1>Total item Found :{product.length}</h1>
+                <Link to='/add-products'>Add a new product</Link>
+            </div>
 
             <table id="customers">
                 <tbody>

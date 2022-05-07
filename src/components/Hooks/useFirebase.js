@@ -1,28 +1,41 @@
-import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
+import initializeAuthentication from "../Firebase/initializeAuthentication";
 
+initializeAuthentication()
 const useFirebase = () => {
     const [signedInUser, setSignedInUser] = useState({});
-
-    initializeApp()
+    const [error, setError] = useState('');
+    const auth = getAuth();
+    
     const provider = new GoogleAuthProvider();
     const handelGoogleSignIn = () => {
 
 
-        const auth = getAuth();
+       
         signInWithPopup(auth, provider)
             .then((result) => {
                 const credential = GoogleAuthProvider.credentialFromResult(result);
                 const token = credential.accessToken;
                 const user = result.user;
-                setSignedInUser(user)
+                const { email, displayName, photoURL } = user;
+                const newUser = {
+                    name: displayName,
+                    email: email,
+                    image: photoURL
+                }
+                setSignedInUser(newUser)
             }).catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 const email = error.email;
                 const credential = GoogleAuthProvider.credentialFromError(error);
-
+                const newError = {
+                    errCode: errorCode,
+                    errEmail: email,
+                    errorMessage: errorMessage
+                };
+                setError(newError)
             });
 
     }
@@ -37,25 +50,24 @@ const useFirebase = () => {
     }
 
     useEffect(() => {
-        const auth = getAuth();
-        onAuthStateChanged(auth, (user) => {
+         
+        const unSubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                // User is signed in, see docs for a list of available properties
-                // https://firebase.google.com/docs/reference/js/firebase.User
                 const uid = user.uid;
-                // ...
+                setSignedInUser(user);
             } else {
-                // User is signed out
-                // ...
+                setSignedInUser({})
             }
         });
+        return () => unSubscribe
     }, []);
 
 
     return {
         handelGoogleSignIn,
         handelGoogleSignOut,
-        signedInUser
+        signedInUser,
+        error
     }
 }
 

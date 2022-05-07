@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Header.css'
+import useAuth from '../Hooks/useAuth';
+import './Header.css';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Header = () => {
+    const { signedInUser, handelGoogleSignOut } = useAuth();
     return (
         <div className='header'>
             <nav className="navbar navbar-expand-lg navbar-light bg-success">
@@ -18,19 +21,30 @@ const Header = () => {
                             </li>
 
                             <li className="nav-item">
-                            <Link to='/order'>Order</Link>
-                                
+                                <Link to='/order'>Order</Link>
+
                             </li>
                             <li className="nav-item">
-                            <Link to='/admin'>Admin</Link>
-                                
+                                <Link to='/admin'>Admin</Link>
+
                             </li>
                             <li className="nav-item">
-                            <Link to='/login'>Log in</Link>
-                                
+                                <Link to='/login'>Log in</Link>
+
                             </li>
+
+                            {
+                                signedInUser.email &&
+
+                                <>
+                                    <img src={signedInUser.photoURL} alt="" />
+                                    <p className='text-white me-3'>Welcome,{signedInUser.displayName}</p>
+                                    <button className="btn btn-outline-warning" onClick={handelGoogleSignOut}><LogoutIcon /> Log out</button>
+
+                                </>
+                            }
                         </ul>
-                       
+
                     </div>
                 </div>
             </nav>

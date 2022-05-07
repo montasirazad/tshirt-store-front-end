@@ -3,6 +3,7 @@ import './Admin.css';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Link } from 'react-router-dom';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 
 
@@ -42,7 +43,7 @@ const Admin = () => {
         <div >
             <div className="title-div">
                 <h1>Total item Found :{product.length}</h1>
-                <Link to='/add-products'>Add a new product</Link>
+                <Link to='/add-products'><AddCircleIcon /> Add a new product</Link>
             </div>
 
             <table id="customers">

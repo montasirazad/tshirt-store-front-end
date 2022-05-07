@@ -1,5 +1,6 @@
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import initializeAuthentication from "../Firebase/initializeAuthentication";
 
 initializeAuthentication()
@@ -7,13 +8,14 @@ const useFirebase = () => {
     const [signedInUser, setSignedInUser] = useState({});
     const [error, setError] = useState('');
     const auth = getAuth();
-    
+    const location = useLocation();
+    const navigate = useNavigate();
+
     const provider = new GoogleAuthProvider();
+    
     const handelGoogleSignIn = () => {
 
-
-       
-        signInWithPopup(auth, provider)
+  signInWithPopup(auth, provider)
             .then((result) => {
                 const credential = GoogleAuthProvider.credentialFromResult(result);
                 const token = credential.accessToken;
@@ -24,7 +26,10 @@ const useFirebase = () => {
                     email: email,
                     image: photoURL
                 }
-                setSignedInUser(newUser)
+                setSignedInUser(newUser);
+                const destination = location.state.from || '/';
+                navigate(destination)
+
             }).catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;

@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Product from '../Product/Product';
 import './AllProducts.css'
+import { Button } from '@mui/material';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Link } from 'react-router-dom';
+
+
 
 const AllProducts = () => {
     const [allProducts, setAllProducts] = useState([]);
@@ -14,10 +19,27 @@ const AllProducts = () => {
             })
     }, [])
 
+    // const buyItem = (id) => {
+    //      console.log(id);
+    // }
     return (
         <div className='all-products-div'>
-            {
+            {/* {
                 allProducts.map(product => <Product key={product._id} product={product}> </Product>)
+            } */}
+
+            {
+
+                allProducts.map(product =>
+                    <div className='product-div' key={product._id}>
+                        <img src={product.imageURL} alt="" />
+                        <h6>{product.name}</h6>
+                        <p>Price: {product.price} BDT</p>
+
+                        <Link to={`/buy-item/${product._id}`}>
+                        <Button variant="contained" color="success"><ShoppingCartIcon /> Buy Now</Button>
+                        </Link>
+                    </div>)
             }
         </div>
     );

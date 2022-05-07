@@ -14,8 +14,8 @@ const Login = () => {
         <div className='login-div'>
 
 
-            {signedInUser.email ? <button className="btn btn-outline-success" onClick={handelGoogleSignOut}>Log out</button>
-                : <button className="btn btn-outline-success" onClick={handelGoogleSignIn}>< GoogleIcon />Continue with google</button>}
+            {signedInUser.email ? <button className="btn btn-outline-success btn-sm" onClick={handelGoogleSignOut}>Log out</button>
+                : <button className="btn btn-outline-success " onClick={handelGoogleSignIn}>< GoogleIcon />Continue with google</button>}
 
             {
                 error.errorMessage &&

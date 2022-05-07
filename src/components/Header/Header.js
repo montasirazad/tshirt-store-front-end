@@ -39,7 +39,7 @@ const Header = () => {
                                 <>
                                     <img src={signedInUser.photoURL} alt="" />
                                     <p className='text-white me-3'>Welcome,{signedInUser.displayName}</p>
-                                    <button className="btn btn-outline-warning" onClick={handelGoogleSignOut}><LogoutIcon /> Log out</button>
+                                    <button className="btn btn-outline-warning btn-sm" onClick={handelGoogleSignOut}><LogoutIcon /> Log out</button>
 
                                 </>
                             }

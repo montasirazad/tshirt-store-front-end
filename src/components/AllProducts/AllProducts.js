@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import Product from '../Product/Product';
-import './AllProducts.css'
-import { Button } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Button } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import './AllProducts.css';
 
 
 

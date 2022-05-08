@@ -1,27 +1,57 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import './BuyItem.css';
+import Button from '@mui/material/Button';
+import useAuth from '../Hooks/useAuth';
+import axios from 'axios';
 
 const BuyItem = () => {
     const [item, setItem] = useState({});
     const { id } = useParams();
+    const { signedInUser } = useAuth()
 
 
     useEffect(() => {
         const url = `http://localhost:5000/all-products/${id}`
-        console.log(url);
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 setItem(data)
             })
 
     }, [id]);
 
+    const handleConfirmOrder = (item) => {
+
+        const customerDetails = {
+            customerName: signedInUser.displayName,
+            email: signedInUser.email
+        }
+
+        const orderedItem = {
+            productName: item.name,
+            productPrice: item.price,
+            productImage: item.imageURL
+        }
+        const confirmedOrder = { ...customerDetails, ...orderedItem }
+
+        axios.post('http://localhost:5000/add-order', confirmedOrder)
+            .then(function (res) {
+                console.log(res);
+            })
+       // console.log(confirmedOrder);
+    }
     return (
-        <div>
-            <p>You choose product id {id} </p>
-            <p>name: {item.name}</p>
+        <div className='item-div' key={item._id}>
+            <img src={item.imageURL} alt="" />
+            <h5>Name: {item.name}</h5>
+            <p>Price: {item.price}</p>
+            <p><small>Product id {id} </small></p>
+            <Link to='/order'>
+                <Button variant="outlined" color="error"
+                    onClick={() => handleConfirmOrder(item)}>Confirm Order</Button>
+            </Link>
         </div>
     );
 };

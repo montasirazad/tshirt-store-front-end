@@ -1,0 +1,15 @@
+.item-div {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.item-div img {
+    height: 200px;
+    width: 150px;
+    border: 2px solid seagreen;
+    padding: 5px;
+}
+
+.item-div a{
+  text-decoration: none;
+}

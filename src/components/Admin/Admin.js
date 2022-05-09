@@ -24,7 +24,7 @@ const Admin = () => {
         const confirm = window.confirm('Are You sure You want to delete ?');
 
         if (confirm) {
-            fetch(`https://shrouded-escarpment-14395.herokuapp.com/${id}`, {
+            fetch(`https://shrouded-escarpment-14395.herokuapp.com/all-products/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

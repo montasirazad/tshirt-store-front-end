@@ -12,7 +12,7 @@ const BuyItem = () => {
 
 
     useEffect(() => {
-        const url = `http://localhost:5000/all-products/${id}`
+        const url = `https://shrouded-escarpment-14395.herokuapp.com/all-products/${id}`
         fetch(url)
             .then(res => res.json())
             .then(data => {
@@ -36,7 +36,7 @@ const BuyItem = () => {
             orderTime: new Date()
         }
         const confirmedOrder = { ...customerDetails, ...orderedItem }
-        axios.post('http://localhost:5000/add-order', confirmedOrder)
+        axios.post('https://shrouded-escarpment-14395.herokuapp.com/add-order', confirmedOrder)
             .then(function (res) {
                
             })

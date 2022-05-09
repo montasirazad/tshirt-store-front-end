@@ -10,7 +10,7 @@ const Order = () => {
     const { signedInUser } = useAuth();
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/confirmed-order?email=${signedInUser.email}`)
+        axios.get(`https://shrouded-escarpment-14395.herokuapp.com/confirmed-order?email=${signedInUser.email}`)
             .then(function (res) {
                 setOrders(res.data)
                 

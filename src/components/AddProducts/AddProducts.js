@@ -8,7 +8,7 @@ const AddProducts = () => {
     const { register, handleSubmit, watch, reset } = useForm();
 
     const onSubmit = data => {
-        axios.post('http://localhost:5000/add-products', data)
+        axios.post('https://shrouded-escarpment-14395.herokuapp.com/add-products', data)
             .then(function (res) {
                 console.log(res);
                 if (res.data.insertedId) {

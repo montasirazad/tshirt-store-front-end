@@ -8,7 +8,7 @@ const UpdateProduct = () => {
     const [item, setItem] = useState({});
 
     useEffect(() => {
-        const url = `http://localhost:5000/all-products/${id}`
+        const url = `https://shrouded-escarpment-14395.herokuapp.com/all-products/${id}`
         fetch(url)
             .then(res => res.json())
             .then(data => {
@@ -37,7 +37,7 @@ const UpdateProduct = () => {
     }
 
     const handleSubmit = (e) => {
-        const url = `http://localhost:5000/all-products/${id}`
+        const url = `https://shrouded-escarpment-14395.herokuapp.com/all-products/${id}`
         fetch(url, {
             method: 'PUT',
             headers: { 'content-type': 'application/json' },

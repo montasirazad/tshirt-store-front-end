@@ -11,7 +11,7 @@ const Admin = () => {
     const [product, setProduct] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/all-products')
+        fetch('https://shrouded-escarpment-14395.herokuapp.com/all-products')
             .then(res => res.json())
             .then(data => {
                 setProduct(data);
@@ -24,7 +24,7 @@ const Admin = () => {
         const confirm = window.confirm('Are You sure You want to delete ?');
 
         if (confirm) {
-            fetch(`http://localhost:5000/all-products/${id}`, {
+            fetch(`https://shrouded-escarpment-14395.herokuapp.com/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

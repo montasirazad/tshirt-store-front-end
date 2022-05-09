@@ -38,7 +38,7 @@ const BuyItem = () => {
         const confirmedOrder = { ...customerDetails, ...orderedItem }
         axios.post('http://localhost:5000/add-order', confirmedOrder)
             .then(function (res) {
-                console.log(res);
+               
             })
         //console.log(confirmedOrder);
     }

@@ -9,7 +9,7 @@ const Login = () => {
         signedInUser,
         error } = useAuth();
 
-    console.log(signedInUser);
+    //console.log(signedInUser);
     return (
         <div className='login-div'>
 

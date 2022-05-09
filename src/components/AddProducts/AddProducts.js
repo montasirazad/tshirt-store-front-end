@@ -16,7 +16,7 @@ const AddProducts = () => {
                     reset()
                 }
             })
-        console.log(data)
+        //console.log(data)
     };
 
     console.log(watch("example"));

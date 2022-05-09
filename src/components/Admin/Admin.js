@@ -37,8 +37,7 @@ const Admin = () => {
         }
     }
 
-
-
+   
     return (
         <div >
             <div className="title-div">
@@ -66,8 +65,8 @@ const Admin = () => {
                             {<td>{<img src={item.imageURL} alt="" />}</td>}
                             {<td><small>{item._id}</small></td>}
 
-                            {<td onClick={() => handleDelete(item._id)} >{<DeleteIcon />} </td>}
-                            {<td>{< EditIcon />}</td>}
+                            {<td  >{<DeleteIcon onClick={() => handleDelete(item._id)} />} </td>}
+                            {<td><Link to={`/update-product/${item._id}`} >{< EditIcon />}</Link></td>}
 
 
                         </tr>)

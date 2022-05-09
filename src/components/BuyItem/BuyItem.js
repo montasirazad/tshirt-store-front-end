@@ -32,15 +32,15 @@ const BuyItem = () => {
         const orderedItem = {
             productName: item.name,
             productPrice: item.price,
-            productImage: item.imageURL
+            productImage: item.imageURL,
+            orderTime: new Date()
         }
         const confirmedOrder = { ...customerDetails, ...orderedItem }
-
         axios.post('http://localhost:5000/add-order', confirmedOrder)
             .then(function (res) {
                 console.log(res);
             })
-       // console.log(confirmedOrder);
+        //console.log(confirmedOrder);
     }
     return (
         <div className='item-div' key={item._id}>

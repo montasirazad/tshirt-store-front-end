@@ -10,6 +10,7 @@ import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import Order from './components/Order/Order';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import UpdateProduct from './components/UpdateProduct/UpdateProduct';
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
 
         <Route path='/order' element={<PrivateRoute>
           <Order />
+        </PrivateRoute>} />
+        <Route path='/update-product/:id' element={<PrivateRoute>
+          <UpdateProduct />
         </PrivateRoute>} />
       </Routes>
     </AuthProvider>
